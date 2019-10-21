@@ -1,132 +1,11 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Consul.Contracts.Acl;
+using Consul.Interfaces;
 
 namespace Consul
 {
-    /// <summary>
-    /// The type of ACL token, which sets the permissions ceiling
-    /// </summary>
-    public class ACLType : IEquatable<ACLType>
-    {
-        public string Type { get; private set; }
-
-        /// <summary>
-        /// Token type which cannot modify ACL rules
-        /// </summary>
-        public static ACLType Client
-        {
-            get { return new ACLType() { Type = "client" }; }
-        }
-
-        /// <summary>
-        /// Token type which is allowed to perform all actions
-        /// </summary>
-        public static ACLType Management
-        {
-            get { return new ACLType() { Type = "management" }; }
-        }
-
-        public bool Equals(ACLType other)
-        {
-            if (other == null)
-            {
-                return false;
-            }
-            return Type.Equals(other.Type);
-        }
-
-        public override bool Equals(object other)
-        {
-            var a = other as ACLType;
-            return a != null && Equals(a);
-        }
-
-        public override int GetHashCode()
-        {
-            return Type.GetHashCode();
-        }
-    }
-
-    public class ACLTypeConverter : JsonConverter
-    {
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            serializer.Serialize(writer, ((ACLType)value).Type);
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
-            JsonSerializer serializer)
-        {
-            var type = (string)serializer.Deserialize(reader, typeof(string));
-            switch (type)
-            {
-                case "client":
-                    return ACLType.Client;
-                case "management":
-                    return ACLType.Management;
-                default:
-                    throw new ArgumentOutOfRangeException("serializer", type,
-                        "Unknown ACL token type value found during deserialization");
-            }
-        }
-
-        public override bool CanConvert(Type objectType)
-        {
-            if (objectType == typeof(ACLType))
-            {
-                return true;
-            }
-            return false;
-        }
-    }
-
-    /// <summary>
-    /// ACLEntry is used to represent an ACL entry
-    /// </summary>
-    public class ACLEntry
-    {
-        public ulong CreateIndex { get; set; }
-        public ulong ModifyIndex { get; set; }
-
-        public string ID { get; set; }
-        public string Name { get; set; }
-
-        [JsonConverter(typeof(ACLTypeConverter))]
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public ACLType Type { get; set; }
-
-        public string Rules { get; set; }
-
-        public bool ShouldSerializeCreateIndex()
-        {
-            return false;
-        }
-
-        public bool ShouldSerializeModifyIndex()
-        {
-            return false;
-        }
-
-        public ACLEntry()
-            : this(string.Empty, string.Empty, string.Empty)
-        {
-        }
-
-        public ACLEntry(string name, string rules)
-            : this(string.Empty, name, rules)
-        {
-        }
-
-        public ACLEntry(string id, string name, string rules)
-        {
-            Type = ACLType.Client;
-            ID = id;
-            Name = name;
-            Rules = rules;
-        }
-    }
 
     /// <summary>
     /// ACL can be used to query the ACL endpoints
@@ -273,19 +152,6 @@ namespace Consul
         public Task<QueryResult<ACLEntry[]>> List(QueryOptions q, CancellationToken ct = default(CancellationToken))
         {
             return _client.Get<ACLEntry[]>("/v1/acl/list", q).Execute(ct);
-        }
-    }
-
-    public partial class ConsulClient : IConsulClient
-    {
-        private Lazy<ACL> _acl;
-
-        /// <summary>
-        /// ACL returns a handle to the ACL endpoints
-        /// </summary>
-        public IACLEndpoint ACL
-        {
-            get { return _acl.Value; }
         }
     }
 }

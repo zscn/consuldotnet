@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-//  <copyright file="Health.cs" company="PlayFab Inc">
+//  <copyright file="Agent.cs" company="PlayFab Inc">
 //    Copyright 2015 PlayFab Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,14 +16,15 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Consul.Interfaces
+namespace Consul.Contracts.Agent
 {
-    public interface IRawEndpoint
+    public enum LogLevel
     {
-        Task<QueryResult<dynamic>> Query(string endpoint, QueryOptions q, CancellationToken ct = default(CancellationToken));
-        Task<WriteResult<dynamic>> Write(string endpoint, object obj, WriteOptions q, CancellationToken ct = default(CancellationToken));
+        Info,
+        Trace,
+        Debug,
+        Warn,
+        Err
     }
 }

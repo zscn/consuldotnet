@@ -15,7 +15,7 @@
 //    limitations under the License.
 //  </copyright>
 // -----------------------------------------------------------------------
-
+using Consul.Interfaces;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

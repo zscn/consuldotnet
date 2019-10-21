@@ -17,6 +17,9 @@
 // -----------------------------------------------------------------------
 
 using Newtonsoft.Json;
+using Consul.Contracts.Agent;
+using Consul.Contracts.Catalog;
+using Consul.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading;

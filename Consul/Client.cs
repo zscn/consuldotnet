@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+
 #if !(CORECLR || PORTABLE || PORTABLE40)
 using System.Security.Permissions;
 using System.Runtime.Serialization;

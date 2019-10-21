@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-//  <copyright file="Health.cs" company="PlayFab Inc">
+//  <copyright file="Catalog.cs" company="PlayFab Inc">
 //    Copyright 2015 PlayFab Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,14 +16,18 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
-using System.Threading;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
-namespace Consul.Interfaces
+namespace Consul.Contracts.Catalog
 {
-    public interface IRawEndpoint
+    public class Node
     {
-        Task<QueryResult<dynamic>> Query(string endpoint, QueryOptions q, CancellationToken ct = default(CancellationToken));
-        Task<WriteResult<dynamic>> Write(string endpoint, object obj, WriteOptions q, CancellationToken ct = default(CancellationToken));
+        // Cannot be "Node" as in the Go API because in C#, properties cannot
+        // have the same name as their enclosing class.
+        [JsonProperty(PropertyName = "Node")]
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public Dictionary<string, string> TaggedAddresses { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-//  <copyright file="Health.cs" company="PlayFab Inc">
+//  <copyright file="Agent.cs" company="PlayFab Inc">
 //    Copyright 2015 PlayFab Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,14 +16,25 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
-using System.Threading;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
-namespace Consul.Interfaces
+namespace Consul.Contracts.Agent
 {
-    public interface IRawEndpoint
+    /// <summary>
+    /// AgentCheckRegistration is used to register a new check
+    /// </summary>
+    public class AgentCheckRegistration : AgentServiceCheck
     {
-        Task<QueryResult<dynamic>> Query(string endpoint, QueryOptions q, CancellationToken ct = default(CancellationToken));
-        Task<WriteResult<dynamic>> Write(string endpoint, object obj, WriteOptions q, CancellationToken ct = default(CancellationToken));
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string ID { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string Name { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string Notes { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string ServiceID { get; set; }
     }
 }

@@ -15,7 +15,8 @@
 //    limitations under the License.
 //  </copyright>
 // -----------------------------------------------------------------------
-
+using Consul.Contracts.Agent;
+using Consul.Interfaces;
 using System;
 using System.Linq;
 using System.Threading;

@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-//  <copyright file="Health.cs" company="PlayFab Inc">
+//  <copyright file="Agent.cs" company="PlayFab Inc">
 //    Copyright 2015 PlayFab Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,14 +16,21 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
-using System.Threading;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
-namespace Consul.Interfaces
+namespace Consul.Contracts.Agent
 {
-    public interface IRawEndpoint
+    /// <summary>
+    /// AgentService represents a service known to the agent
+    /// </summary>
+    public class AgentService
     {
-        Task<QueryResult<dynamic>> Query(string endpoint, QueryOptions q, CancellationToken ct = default(CancellationToken));
-        Task<WriteResult<dynamic>> Write(string endpoint, object obj, WriteOptions q, CancellationToken ct = default(CancellationToken));
+        public string ID { get; set; }
+        public string Service { get; set; }
+        public string[] Tags { get; set; }
+        public int Port { get; set; }
+        public string Address { get; set; }
+        public bool EnableTagOverride { get; set; }
+        public IDictionary<string, string> Meta { get; set; }
     }
 }

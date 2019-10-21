@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-//  <copyright file="Health.cs" company="PlayFab Inc">
+//  <copyright file="Catalog.cs" company="PlayFab Inc">
 //    Copyright 2015 PlayFab Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,14 +16,16 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
-using System.Threading;
-using System.Threading.Tasks;
+using Consul.Contracts.Agent;
 
-namespace Consul.Interfaces
+namespace Consul.Contracts.Catalog
 {
-    public interface IRawEndpoint
+    public class CatalogRegistration
     {
-        Task<QueryResult<dynamic>> Query(string endpoint, QueryOptions q, CancellationToken ct = default(CancellationToken));
-        Task<WriteResult<dynamic>> Write(string endpoint, object obj, WriteOptions q, CancellationToken ct = default(CancellationToken));
+        public string Node { get; set; }
+        public string Address { get; set; }
+        public string Datacenter { get; set; }
+        public AgentService Service { get; set; }
+        public AgentCheck Check { get; set; }
     }
 }

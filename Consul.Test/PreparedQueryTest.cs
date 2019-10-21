@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Consul.Contracts.Agent;
+using Consul.Contracts.Catalog;
+using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 

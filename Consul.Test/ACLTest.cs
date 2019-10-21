@@ -16,6 +16,7 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
+using Consul.Contracts.Acl;
 using System;
 using System.Threading.Tasks;
 using Xunit;

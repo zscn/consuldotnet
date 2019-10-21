@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using Consul.Contracts.Acl;
 
-namespace Consul
+namespace Consul.Interfaces
 {
     public interface IACLEndpoint
     {

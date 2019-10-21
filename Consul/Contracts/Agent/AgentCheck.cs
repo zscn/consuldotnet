@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-//  <copyright file="Health.cs" company="PlayFab Inc">
+//  <copyright file="Agent.cs" company="PlayFab Inc">
 //    Copyright 2015 PlayFab Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,14 +16,25 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
-using System.Threading;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
-namespace Consul.Interfaces
+namespace Consul.Contracts.Agent
 {
-    public interface IRawEndpoint
+    /// <summary>
+    /// AgentCheck represents a check known to the agent
+    /// </summary>
+    public class AgentCheck
     {
-        Task<QueryResult<dynamic>> Query(string endpoint, QueryOptions q, CancellationToken ct = default(CancellationToken));
-        Task<WriteResult<dynamic>> Write(string endpoint, object obj, WriteOptions q, CancellationToken ct = default(CancellationToken));
+        public string Node { get; set; }
+        public string CheckID { get; set; }
+        public string Name { get; set; }
+
+        [JsonConverter(typeof(HealthStatusConverter))]
+        public HealthStatus Status { get; set; }
+
+        public string Notes { get; set; }
+        public string Output { get; set; }
+        public string ServiceID { get; set; }
+        public string ServiceName { get; set; }
     }
 }
