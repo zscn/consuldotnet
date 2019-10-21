@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Consul.Contracts.Client;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 

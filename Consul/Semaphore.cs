@@ -15,6 +15,8 @@
 //    limitations under the License.
 //  </copyright>
 // -----------------------------------------------------------------------
+using Consul.Contracts.Client;
+using Consul.Exceptions;
 using Consul.Interfaces;
 using System;
 using System.Collections.Generic;

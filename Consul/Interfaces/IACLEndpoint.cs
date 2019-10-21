@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Consul.Contracts.Acl;
+using Consul.Contracts.Client;
 
 namespace Consul.Interfaces
 {

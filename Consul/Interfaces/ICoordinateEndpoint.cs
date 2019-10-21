@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using Consul.Contracts.Client;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Consul.Interfaces

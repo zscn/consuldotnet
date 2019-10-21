@@ -16,6 +16,7 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
+using Consul.Contracts.Client;
 using Consul.Interfaces;
 using System.Globalization;
 using System.Linq;

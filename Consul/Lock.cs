@@ -1,4 +1,6 @@
-﻿using Consul.Interfaces;
+﻿using Consul.Contracts.Client;
+using Consul.Exceptions;
+using Consul.Interfaces;
 using System;
 using System.Runtime.Serialization;
 using System.Threading;

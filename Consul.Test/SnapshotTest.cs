@@ -16,6 +16,8 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
+using Consul.Contracts.Client;
+using Consul.Exceptions;
 using System;
 using System.IO;
 using System.Text;

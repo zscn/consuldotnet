@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Consul.Contracts.Client;
+using Consul.Exceptions;
+using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;

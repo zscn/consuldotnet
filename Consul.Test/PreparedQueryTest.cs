@@ -1,5 +1,6 @@
 ﻿using Consul.Contracts.Agent;
 using Consul.Contracts.Catalog;
+using Consul.Contracts.Client;
 using System;
 using System.Linq;
 using System.Threading.Tasks;

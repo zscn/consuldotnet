@@ -16,6 +16,7 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 using Consul.Contracts.Catalog;
+using Consul.Contracts.Client;
 using Consul.Interfaces;
 using System.Collections.Generic;
 using System.Threading;

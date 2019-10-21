@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Consul.Contracts.Client;
 using Consul.Interfaces;
 using System;
 using System.Collections.Generic;
